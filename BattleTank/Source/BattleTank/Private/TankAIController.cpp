@@ -4,7 +4,6 @@
 #include "Tank.h"
 #include "GameFramework/Actor.h"
 #include "Engine/World.h"
-#include "..\Public\TankAIController.h"
 
 ATank* ATankAIController::GetControlledTank() const
 {
