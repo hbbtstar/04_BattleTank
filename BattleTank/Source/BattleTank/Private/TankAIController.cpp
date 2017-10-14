@@ -3,6 +3,7 @@
 #include "TankAIController.h"
 #include "Tank.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/Controller.h"
 #include "Engine/World.h"
 
 ATank* ATankAIController::GetControlledTank() const
@@ -15,6 +16,8 @@ void ATankAIController::BeginPlay()
 	Super::BeginPlay();
 }
 
+
+
 ATank* ATankAIController::GetPlayerTank() const
 {
 	ATank* PlayerTank = nullptr; 
@@ -25,6 +28,11 @@ ATank* ATankAIController::GetPlayerTank() const
 		return PlayerTank;
 	}
 	return PlayerTank;
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 }
 
 

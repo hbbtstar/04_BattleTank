@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "BattleTank/Public/Tank.h"
 #include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 #include "TankPlayerController.generated.h"
 
 /**
@@ -24,4 +25,17 @@ public:
 
 private:
 	bool GetSightRayHitLocation(FVector& HitLocation);
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation;
+
+	UPROPERTY(EditAnywhere)
+	int32 LineTraceRange = 10000;
 };
