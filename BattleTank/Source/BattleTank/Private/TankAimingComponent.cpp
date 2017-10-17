@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
+#include "TankTurret.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -63,13 +64,21 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel *BarrelToSet)
 	Barrel = BarrelToSet;
 }
 
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	Turret = TurretToSet;
+}
+
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	FRotator BarrelRotator = Barrel->GetForwardVector().Rotation();
+	FRotator TurretRotator = Turret->GetForwardVector().Rotation();
 	FRotator AimAsRotator = AimDirection.Rotation();
-	FRotator DeltaRotator = AimAsRotator - BarrelRotator;
+	FRotator BarrelDeltaRotator = AimAsRotator - BarrelRotator;
+	FRotator TurretDeltaRotator = AimAsRotator - TurretRotator;
 
-	Barrel->Elevate(DeltaRotator.Pitch);
+	Barrel->Elevate(BarrelDeltaRotator.Pitch);
+	Turret->Rotate(TurretDeltaRotator.Yaw);
 	// get barrel rotation
 	// make barrel rotation (not sure which of xyz) match OutLaunchVelocity vector
 	// don't rotate barrel instantly, do so over few seconds
