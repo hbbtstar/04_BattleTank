@@ -43,3 +43,8 @@ void ATank::AimAt(FVector HitLocation)
 
 }
 
+void ATank::Fire(FVector HitLocation)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Firing for effect!"))
+}
+

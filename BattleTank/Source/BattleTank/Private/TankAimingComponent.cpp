@@ -52,9 +52,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	if (bHaveAimSolution)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		auto OurTankName = GetOwner()->GetName();
 		auto BarrelLocation = Barrel->GetComponentLocation();
-		UE_LOG(LogTemp, Warning, TEXT("%s firing at %s"), *OurTankName, *AimDirection.ToString());
 		MoveBarrelTowards(AimDirection);
 	}
 }
